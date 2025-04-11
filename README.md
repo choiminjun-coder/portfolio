@@ -42,41 +42,58 @@
 
 ### 🔧 주요 시스템 및 코드 설계
 
-#### ▶ 캐릭터 이동 & 조작
-- `NewPlayer.cs`에서 카메라 회전에 따라 이동 방향이 바뀌는 TPS 스타일 캐릭터 제어 구현  
-- 카메라 기준 움직임, 걷기/달리기/점프, Raycast로 벽 충돌 처리  
-- Animator 파라미터 연동으로 자연스러운 애니메이션 구성  
+#### ▶ 캐릭터 이동 & 조작 (`NewPlayer.cs`)
+- `Aim()` – 마우스 회전값을 기반으로 카메라 각도와 캐릭터 방향 제어  
+- `Move()` – 입력 방향에 따라 이동 벡터 계산 및 속도 적용  
+- `Jump()` – 점프 입력 처리, 착지 여부는 `OnCollisionEnter()`에서 복구  
+- Animator 파라미터 (`isWalking`, `isRunning`)를 이동 상태에 따라 제어
 
-✅ “카메라와 캐릭터 이동 벡터를 분리하여 시점 기반의 자유 이동 구현함”  
-✅ “Input 처리, 물리 이동, 애니메이션 상태 제어를 기능별로 분리하여 유지보수성 강화”
-
----
-
-#### ▶ 컬러 체인지 퍼즐 시스템
-- `ColorChanger.cs`에서 주기적으로 색상이 변하는 오브젝트 구현  
-→ `InvokeRepeating()` 사용, 순차적 색 변경 → `GetCurrentColor()`로 외부 호출 가능  
-
-✅ “색상 상태를 외부에서 읽을 수 있는 getter 제공으로 구조화된 의존성 설계”
+✅ 카메라와 캐릭터 이동 벡터를 분리하여 시점 기반의 자유 이동 구현  
+✅ Input 처리, 물리 이동, 애니메이션 상태 제어를 기능별로 분리하여 유지보수성 강화
 
 ---
 
-#### ▶ ColorCounter – 퍼즐 해석 & 스테이지 클리어 조건
-- 특정 색상 오브젝트와 상호작용 시, 현재 색상과 태그가 일치하면 카운트 증가  
-- UI 텍스트 실시간 갱신  
-- 카운트가 맞으면 자동 클리어, 초과 시 자동 리셋 → 실패 조건 관리
+#### ▶ 컬러 체인지 퍼즐 시스템 (`ColorChanger.cs`)
+- `InvokeRepeating()` – 일정 시간 간격으로 색상 순환 (`ChangeColor()` 호출)  
+- `ChangeColor()` – 색상 배열을 순회하며 MeshRenderer의 `material.color` 변경  
+- `GetCurrentColor()` – 현재 색상을 외부에서 참조할 수 있도록 반환
 
-✅ “색상 태그/값 비교 기반의 퍼즐 논리 구현, UI 연동까지 통합 구성”
+✅ 색상 상태를 외부에서 읽을 수 있는 getter 제공으로 구조화된 의존성 설계  
+✅ 색상 순환을 자동화하여 퍼즐과 연동되는 상태 기반 로직 구현 가능
 
 ---
 
-#### ▶ 엔딩 폭발 이펙트 & 시각 효과
-- `ExplosionEffect.cs`에서 `OnCollisionEnter()` 기반 폭발 처리  
-→ `AddExplosionForce()`로 주변 오브젝트 물리 반응  
-→ 폭발 이펙트 프리팹 로딩 + 회전값 + 스케일 배수 적용  
-→ `OnDrawGizmos()`로 폭발 범위 시각 디버깅 가능
+#### ▶ 퍼즐 해석 & 스테이지 클리어 조건 (`ColorCounter.cs`)
+- `OnTriggerEnter()` – 플레이어가 특정 색상 오브젝트에 접근 시 UI 활성화 및 현재 태그 저장  
+- `Update()` – 입력 키(E, R)에 따라 `IncrementColorCount()` 및 `ResetCounts()` 호출  
+- `IncrementColorCount()` – 태그와 현재 색상이 일치하면 해당 색상 카운트 증가  
+- `ResetCounts()` – 조건 초과 또는 R키 입력 시 모든 색상 카운트 초기화  
+- `GetCountDisplayText()` – 현재 색상 카운트를 문자열로 반환해 UI에 표시  
+- `CheckStageClearCondition()` – 색상별 카운트가 조건과 일치할 경우 스테이지 클리어 처리
 
-✅ “단순 연출이 아닌 실제 물리 반응과 연동된 연출 시스템 구성”  
-✅ “가시성 확보를 위한 개발용 Gizmo 처리도 병행”
+✅ 색상 태그/값 비교 기반의 퍼즐 논리 구현, UI와 연동되어 직관적 피드백 제공  
+✅ 클리어 조건 및 예외(초과) 상황을 함수로 분리하여 관리 용이성 확보
+
+---
+
+#### ▶ 엔딩 폭발 이펙트 및 시각 효과 (`ExplosionEffect.cs`)
+- `OnCollisionEnter()` – 특정 태그("letter")와 충돌 시 `Explode()` 호출  
+- `Explode()`  
+  - `Instantiate()` – 지정된 위치에 폭발 이펙트 생성  
+  - `transform.localScale *=` – 스케일 배수 적용  
+  - `Physics.OverlapSphere()` – 주변 Rigidbody 탐색  
+  - `AddExplosionForce()` – 감지된 Rigidbody에 물리 폭발력 적용  
+- `OnDrawGizmos()` – 개발 중 폭발 범위를 시각적으로 디버깅 가능
+
+✅ 단순 연출이 아닌 실제 물리 반응과 연동된 연출 시스템 구성  
+✅ 가시성 확보를 위한 개발용 Gizmo 처리도 병행하여 디버깅 편의성 향상
+
+---
+
+### ✨ 핵심 역량 요약
+- Unity 구조 설계 경험: 기능별로 클래스를 분리하고 목적에 맞게 구성  
+- 실전 API 활용 능력: `InvokeRepeating()`, `Animator`, `OverlapSphere()` 등 다양한 기능을 상황에 맞게 적용  
+- 협업과 유지보수를 고려한 개발 습관: getter/조건분기/UI 연결 모두 명확하게 설계
 
 ---
 
@@ -128,13 +145,5 @@
     </a> 
 </p>
 
-<h3 align="center">🧰 사용 도구</h3>
-<p align="center"> 
-    <a href="https://unity.com/" target="_blank" rel="noreferrer"> 
-        <img src="https://www.vectorlogo.zone/logos/unity3d/unity3d-icon.svg" alt="unity" width="40" height="40"/> 
-    </a> 
-</p>
+<h3 align="center">🧰 사용 도구</h3
 
-<p align="left"> 
-    <img src="https://komarev.com/ghpvc/?username=dreamerschoiminjun&label=Profile%20views&color=0e75b6&style=flat" alt="dreamerschoiminjun" /> 
-</p>
