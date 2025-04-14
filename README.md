@@ -1,24 +1,12 @@
-<div align="center">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=84f0ee&height=180&text=Unity%20Developer&animation=&fontColor=000000&fontSize=40" />
-</div>
+---
 
-<div align="center"> 
-    <h2 style="border-bottom: 1px solid #21262d; color: #c9d1d9;"> 👋 관련 업무 </h2>  
-    <div style="font-weight: 700; font-size: 15px; text-align: center; color: #c9d1d9;">
-        안녕하세요! 유니티 개발자 최민준입니다.<br>
-    </div>
-</div>
-
-
+👋 관련 업무 </h2>  
+안녕하세요! 유니티 개발자 최민준입니다
 <br><br>
 
-<div align="center"> 
-    <h2 style="border-bottom: 1px solid #21262d; color: #c9d1d9;"> 🛠️ 개발 경력 </h2> 
-    <div style="font-weight: 700; font-size: 15px; text-align: center; color: #c9d1d9;">
-        • 유니티 개발 시작 2021년 9월 (현재 4년차)
-    </div>
-</div>
+• 유니티 개발 시작 2021년 9월 (현재 4년차)
 
+<br><br>
 ---
 
 🛠️ 본 포트폴리오는 직접 구현한 기능 및 시스템만 정리하였습니다.
