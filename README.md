@@ -402,24 +402,20 @@ StartTimer(), StopTimer(), ResetTimer() - 시간 제어
 
 ---
 
-<br><br>
+## 🧑‍💻 사용 언어
 
-<h3 align="center">🧑‍💻 사용 언어</h3>
-<p align="center"> 
-    <a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer"> 
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> 
-    </a> 
-</p>
+- **C#**  
+  Unity 기반 게임 시스템 전반을 구성하는 주 프로그래밍 언어로 사용
 
 ## 🧰 사용 기술 요약
 
-- **Unity**  
+- 🎮 **Unity**  
   FSM, Animator, Coroutine, Raycast, NavMesh 등 Unity의 주요 기능을 활용한 시스템 개발
 
-- **C#**  
+- 💻 **C#**  
   클래스 단위 모듈화, 인터페이스 활용, 확장성을 고려한 구조 설계
 
-- **GitHub**  
+- 🔧 **GitHub**  
   버전 관리, 이슈 관리, 협업 흐름에 기반한 커밋 및 PR 관리 경험
   
   ---
