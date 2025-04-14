@@ -30,7 +30,7 @@
 ---
 
 
-# 🎮 퍼즐 게임 (팀 프로젝트, 개발자 2인 협업)
+# 🧩 퍼즐 게임 (팀 프로젝트, 개발자 2인 협업)
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
 ⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
@@ -45,7 +45,7 @@
 
 ### 🔧 주요 시스템 및 코드 설계
 
-#### ▶ 캐릭터 이동 시스템 (NewPlayer.cs)
+#### ▶ 🕹️ 캐릭터 이동 시스템 (NewPlayer.cs)
 
 TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 설계
 
@@ -59,7 +59,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ---
 
-#### ▶ 색상 순환 퍼즐 시스템 (ColorChanger.cs)
+#### ▶ 🧩 색상 순환 퍼즐 시스템 (ColorChanger.cs)
 
 색상이 주기적으로 변화하며, 퍼즐 조건에 사용될 수 있도록 설계된 상태 머신 구성
 
@@ -72,7 +72,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ---
 
-#### ▶ 퍼즐 조건 및 클리어 시스템 (ColorCounter.cs)
+#### ▶ 🧠 퍼즐 조건 및 클리어 시스템 (ColorCounter.cs)
 
 색상과 태그 일치 여부 기반으로 퍼즐 카운트를 계산하고 UI 및 클리어 조건 연동
 
@@ -88,7 +88,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ---
 
-#### ▶ 엔딩 연출 시스템 (ExplosionEffect.cs)
+#### ▶ 💥 엔딩 연출 시스템 (ExplosionEffect.cs)
 
 물리 연동 기반 폭발 효과 구현으로 연출과 게임 플레이를 연결
 
@@ -122,7 +122,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ---
 
-# 🎮 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
+# 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps-minigame)  
 ⏱ 진행 기간: 2024.09.01 ~ 2024.09.30  
@@ -139,7 +139,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ### 🔧 주요 시스템 및 코드 설계
 
-▶ 캐릭터 시스템 (player.cs)
+▶ 🕹️ 캐릭터 시스템 (player.cs)
 
 FPS 형태 캐릭터 이동 및 조준, 발사, 애니메이션 제어 포함한 전투 구현  
 GetInput() – 키보드 입력 수집 (Horizontal, Vertical)  
@@ -155,7 +155,7 @@ Jump() – 점프 입력 시 AddForce()로 물리 기반 점프 적용
 
 ---
 
-▶ 전투 시스템 (Bullet.cs)  
+▶ 🔫 전투 시스템 (Bullet.cs)  
 총알의 수명 및 충돌 판정과 데미지 적용 로직 구현
 BulletAttack() – 마우스 입력 시 발사 애니메이션, 쿨타임 체크, 총알 발사  
 ShootProjectile() – Raycast로 명중 지점 계산 후 총알 생성 및 방향 지정
@@ -169,7 +169,7 @@ OnTriggerEnter() – 적과 충돌 시 데미지 적용 및 파괴
 
 ---
 
-▶적 시스템 (EnemySpawn.cs, EnemyStats.cs, Beam.cs)
+▶ 	👾 적 시스템 (EnemySpawn.cs, EnemyStats.cs, Beam.cs)
 
 일정 시간마다 플레이어 주변 랜덤 위치에 적 등장  
 EnemyStats – 데미지 처리 및 사망 시 점수 증가  
@@ -182,7 +182,7 @@ Beam.cs – VolumetricLine 기반 시각 효과 + Raycast로 지속 데미지
 
 ---
 
-▶ 아이템 시스템 (Item.cs, GameItem.cs)
+▶ 💎 아이템 시스템 (Item.cs, GameItem.cs)
 
 충돌 기반 효과 발동 및 지속 시간 조절 구조 설계  
 OnTriggerEnter() – 충돌 시 아이템 효과 자동 발동  
@@ -196,7 +196,7 @@ ApplyEffect() – ID 기반으로 효과 분기 처리
 
 ---
 
-▶ UI 및 사운드 시스템 (Score.cs, UIManager.cs, ButtonActions.cs, mainstagebgm.cs, menubgm.cs, player.cs)
+▶ 🔊 UI 및 사운드 시스템 (Score.cs, UIManager.cs, ButtonActions.cs, mainstagebgm.cs, menubgm.cs, player.cs)
 
 생존 시간 및 적 처치 수 기반 점수 증가
 TextMeshPro, Slider 등을 통한 실시간 UI 출력
@@ -296,7 +296,7 @@ OnTriggerEnter() - 충돌 시 적 체력 감소
 
 ---
 
-### 🧠 적 시스템
+###  👾 적 시스템
 
 **적 추적 및 공격 AI 시스템(enemymove.cs)**  
 Update() - 거리 체크 및 추적/공격 상태 관리  
