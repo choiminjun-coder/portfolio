@@ -236,15 +236,131 @@ TextMeshPro, Slider 등을 통한 실시간 UI 출력
 
 ---
 
-### 🔹 TPS 로그라이크 장르 게임 (디자이너 1인 협업)  
-⏱ 진행 기간: 2022.09.20 ~ 2025.03.01  
+🔹 TPS 로그라이크 장르 게임 (디자이너 1인 협업)
+⏱ 진행 기간: 2022.09.20 ~ 2025.03.01
+장르: TPS 로그라이크
+참여 인원: 2인 (디자이너 1인 외주 협업)
+역할: 전체 캐릭터 시스템 설계 및 구현, 적 AI 및 상태이상 시스템, 아이템 효과 및 생성 구조, UI 연동 구성
+주요 구현 요소: TPS 시점 기반 이동 및 전투 시스템, 콤보 기반 근접전 / 발사체 기반 원거리 공격, 상태이상, 확률 기반 드랍, 스탯 기반 아이템 강화 시스템
 
-**주요 개발 중 요소:**  
-- TPS 전투 컨트롤러 (카메라 연동, 조작 커스터마이징)  
-- 무기/스킬 슬롯 시스템  
-- 웨이브 기반 적 생성 구조  
-- UI, 저장 시스템, 게임 루프 설계  
-※ 본 프로젝트는 실제 출시와 사업화를 목적으로 진행되었습니다.
+🔧 주요 시스템 및 코드 설계
+🎮 캐릭터 시스템
+주요 함수명 - 주요 함수 역할
+
+▶ 캐릭터 스탯 관리 (CharacterStats.cs)
+✅ 캐릭터의 체력, 공격력, 속도, 스킬 쿨타임 등 주요 스탯 통합 관리
+✅ 아이템, 재화, 상태이상, 치명타 등 게임 전반에 필요한 수치와 변수 설계
+Start() - 초기 스탯 설정
+RegenerateHealth() - 일정 주기로 체력 자동 회복
+
+▶ 캐릭터 조작 및 전투 (Player.cs)
+✅ TPS 시점 기반 이동, 회피, 점프, 조준, 무기 전환 등 자유로운 컨트롤 제공
+✅ 키 바인딩 및 애니메이션 상태 연동
+Move(), Jump(), Dodge(), Aim() - 전방위 캐릭터 조작 처리
+HandleWeaponSwitch() - 무기 타입(근/원거리)에 따른 시스템 분기
+OnCollisionEnter() - 착지 이벤트 감지 및 콤보 초기화
+
+▶ 키 설정 시스템 (KeyBindingManager.cs)
+✅ 각 기능에 키 매핑 → 실시간 변경 + PlayerPrefs 저장
+✅ UI 연동을 통해 유저 편의성 확보
+Start() - 기본 키 설정 불러오기 및 UI 초기화
+StartRebinding() - 리바인딩 대기 진입
+ResetToDefault() - 전체 키 초기화
+
+🗡️ 전투 시스템
+주요 함수명 - 주요 함수 역할
+
+▶ 근접 공격 시스템 (MeleeAttackModule.cs)
+✅ 3타 콤보 구조로 연계 공격 가능
+✅ 보조 공격, 스킬과의 연결 설계
+HandleCombo() - 입력 기반 콤보 단계 진행
+TriggerCombo() - 콤보 단계별 애니메이션 및 판정 처리
+skillAttack() - 근접 스킬 발동
+
+▶ 원거리 공격 시스템 (RangedAttackModule.cs)
+✅ 발사체와 스킬 모드 전환 지원
+✅ 스탯, 쿨타임 기반 발사 로직
+HandleRangedAttack() - 기본 발사 처리
+HandleSkill() - 스킬 모드 전환 및 상태 변경
+ShootProjectile() - Raycast 기반 조준 후 발사체 생성
+
+▶ 무기 타격 판정 (PlayerWeaponTrigger.cs)
+✅ 타격 가능 시기 애니메이션 이벤트로 제어
+✅ 충돌 대상에 데미지 적용
+OnTriggerEnter() - 적과 충돌 시 데미지 처리
+EnableHit(), DisableHit() - 타격 유효 구간 지정
+
+🧠 적 시스템
+주요 함수명 - 주요 함수 역할
+
+▶ 적 AI 및 추적/공격 (enemymove.cs)
+✅ NavMesh 기반으로 플레이어 추적
+✅ 범위 내 진입 시 자동 공격
+Update() - 체력 체크 및 추적 수행
+ChasePlayer() - 추적 및 공격 전환
+PerformAttack() - 근접 공격 트리거 실행
+
+▶ 적 스탯 및 상태 관리 (EnemyStats.cs)
+✅ 체력, 공격력, 속도, 상태이상 누적 수치 관리
+✅ 상태이상 지속 시간과 데미지 주기 설정
+Start() - 최대 체력 초기화
+
+▶ 상태이상 시스템 (Element.cs)
+✅ 화상/중독/감전/출혈/빙결 상태 효과
+✅ 누적 수치 100 도달 시 발동 + 지속 데미지
+HandleStatusEffects() - 각 상태 Tick 처리
+ApplyXStatus() - 상태이상 적용
+ApplyXDamage() - 지속 데미지 계산
+CreateEffect() - 이펙트 프리팹 생성 및 연출
+
+▶ 적 드랍 시스템 (Enemy.cs)
+✅ 캐릭터 스탯 기반 확률 조정 드랍 시스템
+✅ Coin/Spirit/Passive 아이템 분기
+DropItem() - 확률 기반 드랍 시작
+DropItemOfType() - 해당 타입 아이템 생성
+
+▶ 몬스터 킬 추적 (KillMonster.cs)
+✅ 스테이지별 몬스터 처치 수 추적
+IncreaseMonsterKillCount() - 몬스터별 카운트 증가
+
+💎 아이템 시스템
+주요 함수명 - 주요 함수 역할
+
+▶ 아이템 효과 적용 (GameItem.cs)
+✅ 최대 200개까지 대응 가능한 능력치 변화 정의
+✅ ApplyEffect()로 ID별 효과 분기
+ApplyItemXEffect() - 각 ID별 효과 적용
+
+▶ 공통 아이템 생성 (CommonItem.cs)
+✅ ScriptableObject 기반 아이템 등록 및 데이터 관리
+Awake() - 공용 아이템 초기화 및 리스트 등록
+
+🧭 UI 시스템
+주요 함수명 - 주요 함수 역할
+
+▶ 체력 UI (HealthBarController.cs, UpdateHealthText.cs)
+✅ 체력 상태를 바 및 숫자로 실시간 반영
+UpdateHealth() - 체력 텍스트 표시
+Update() - 초록 바 길이 조절
+
+▶ 자원 UI (UpdateMoney.cs, UpdateSpirit.cs)
+✅ 골드, 영혼 등 수치 실시간 표시
+UpdateMoneyText(), UpdateSpiritText() - 텍스트 갱신
+
+▶ 게임 타이머 UI (Timer.cs)
+✅ 경과 시간 기록 및 재시작/정지 기능
+UpdateTimerText() - 시간 형식 변환 및 출력
+
+✨ 핵심 기술 요약
+TPS 기반 자유 이동 및 전투 시스템 (근/원거리 연동 구조)
+
+상태이상 누적 및 지속 피해 로직, 확률 기반 드랍 시스템
+
+스탯 기반 아이템 효과 구조 및 ScriptableObject 아이템 데이터 관리
+
+유연한 키 설정 및 UI 실시간 동기화 시스템
+✅ 유지보수와 확장성을 고려한 모듈 구조로 구성
+
 
 ---
 
