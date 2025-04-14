@@ -411,6 +411,15 @@ StartTimer(), StopTimer(), ResetTimer() - 시간 제어
     </a> 
 </p>
 
-<br><br>
+## 🧰 사용 기술 요약
 
-<h3 align="center">🧰 사용 기술</h3> <p align="center"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="unity" width="40" height="40" /> &nbsp;&nbsp; <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40" /> &nbsp;&nbsp; <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="github" width="40" height="40" /> </p>
+- **Unity**  
+  FSM, Animator, Coroutine, Raycast, NavMesh 등 Unity의 주요 기능을 활용한 시스템 개발
+
+- **C#**  
+  클래스 단위 모듈화, 인터페이스 활용, 확장성을 고려한 구조 설계
+
+- **GitHub**  
+  버전 관리, 이슈 관리, 협업 흐름에 기반한 커밋 및 PR 관리 경험
+  
+  ---
