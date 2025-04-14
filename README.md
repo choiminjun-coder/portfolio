@@ -183,16 +183,6 @@ ApplyEffect() – ID 기반으로 효과 분기 처리
 
 ---
 
-▶ 낙하 비행기 연출 (PlaneCrash.cs, PlaneGravity.cs)
-
-SpawnPlane() – 일정 시간마다 플레이어 주변에 비행기 생성  
-PlaneGravity.cs – 중력처럼 낙하하며, 특정 높이 이하 시 제거
-
-✅ 랜덤성과 물리 반응이 결합된 배경 연출  
-✅ 시각적/위험 요소로서의 기능 동시에 수행
-
----
-
 ▶ 적 생성 및 공격 구조 (EnemySpawn.cs, EnemyStats.cs, Beam.cs)
 
 일정 시간마다 플레이어 주변 랜덤 위치에 적 등장  
