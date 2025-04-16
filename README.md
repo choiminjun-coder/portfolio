@@ -47,11 +47,10 @@
 
 ## 🔧 주요 시스템 및 코드 설계
 
----
 
 ### 🎮 캐릭터 시스템
 
-** 캐릭터 스탯 관리(CharacterStats.cs)**  
+** 캐릭터 스탯 관리(CharacterStats.cs)**
 Start() - 초기 체력/재화 설정  
 AddToInventory() - 인벤토리 아이템 추가  
 Update() - 주기적 체력 회복  
@@ -60,7 +59,7 @@ RegenerateHealth() - 체력 자동 회복 로직
 ✅ 체력, 공격력, 속도, 스킬 쿨타임 등 전투 및 이동에 필요한 핵심 스탯 관리  
 ✅ 아이템, 상태이상, 재화, 치명타 등 다양한 속성 통합 구조  
 
-** TPS 방식의 캐릭터 조작(Player.cs)**  
+** TPS 방식의 캐릭터 조작(Player.cs)**
 Start() - 컴포넌트 초기화 및 상태 설정  
 Update() - 입력 및 상태 제어 루프  
 Move(), Aim(), Jump(), Dodge() - TPS 조작 로직  
@@ -69,7 +68,7 @@ HandleWeaponSwitch() - 무기 전환 (근접 ↔ 원거리)
 ✅ TPS 시점 기준 이동, 회피, 점프, 조준, 무기 전환  
 ✅ 근/원거리 무기 방식에 따라 입력 처리 및 애니메이션 연동  
 
-** 입력 및 조작 시스템(KeyBindingManager.cs)**  
+** 입력 및 조작 시스템(KeyBindingManager.cs)**
 Start() - 기본 키 설정 및 UI 초기화  
 StartRebinding() - UI 클릭 시 키 변경 대기  
 WaitForKeyInput() - 입력 수신 및 중복 체크  
