@@ -339,7 +339,7 @@ Jump() – 점프 입력 시 AddForce()로 물리 기반 점프 적용
 ▶ 🔫 전투 시스템 (Bullet.cs)  
 
 총알의 수명 및 충돌 판정과 데미지 적용 로직 구현
-BulletAttack() – 마우스 입력 시 발사 애니메이션, 쿨타임 체크, 총알 발사  
+BulletAttack() – 마우스 입력 시 발사 애니메이션, 쿨타임 체크, 총알 발사
 ShootProjectile() – Raycast로 명중 지점 계산 후 총알 생성 및 방향 지정
 Start() – 플레이어의 CharacterStats로부터 공격력 연동  
 FixedUpdate() – 일정 시간 경과 후 총알 자동 제거  
