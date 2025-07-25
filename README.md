@@ -24,6 +24,9 @@
 # 🎮 진행 프로젝트
 
 # 1. 🎮 TPS 로그라이크 게임
+🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
+
+▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
 
 ⏱ 진행 기간: 2022.09.20 ~ 2025.03.01  
 
@@ -204,7 +207,9 @@
 # 2. 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
+
 ▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
+
 ⏱ 진행 기간: 2024.09.01 ~ 2024.09.30  
 
 장르: 1인칭 FPS + 서바이벌  
