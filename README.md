@@ -203,7 +203,7 @@
 <br><br>
 
 
-# 3. 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
+# 2. 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
 ▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
@@ -214,8 +214,6 @@
 팀 구성 : 개발자 2인
 
 프로젝트 스타일: 무료 에셋 제한 조건, 시스템 직접 구현 및 실무 중심 멘토링형 프로젝트
-
-※ 해당 프로젝트는 실제 플레이 영상도 별도로 보관 중이며, 필요 시 공유 가능합니다.
 
 주요 구현 요소
 1. 캐릭터 시스템
@@ -305,7 +303,7 @@
 
 
 ---
-# 2. 🧩 퍼즐 게임 
+# 3. 🧩 퍼즐 게임 
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
 
