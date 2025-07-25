@@ -24,7 +24,7 @@
 # 🎮 진행 프로젝트
 
 # 1. 🎮 TPS 로그라이크 게임
-🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
+🔗 코딩파일 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-TPSscript)  
 
 ▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
 
@@ -308,7 +308,7 @@
 ---
 # 3. 🧩 퍼즐 게임 
 
-🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
+🔗 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-puzzle)  
 
 ⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
 
