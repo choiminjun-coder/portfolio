@@ -9,7 +9,6 @@
 
 # 🎮 진행 프로젝트
 # 1. 🎮 TPS 로그라이크 게임
-🔗 코딩파일 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-TPSscript)  
 
 ⏱ 진행 기간: 2022.09.20 ~ 2025.03.01  
 
@@ -185,7 +184,6 @@
 
 # 2. 🤖 실시간 NPC 대화·음악 시스템 (Prototype)
 
-🔗 **코딩파일**: [GitHub Repository](https://github.com/choiminjun-coder/AIChat)  
 ⏱ **진행 기간**: 2025.11.17 ~ 2025.11.23  
 🎮 **장르**: 대화형 AI 시스템  
 
@@ -299,8 +297,6 @@
 
 # 2. 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
 
-🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
-
 ⏱ 진행 기간: 2024.09.01 ~ 2024.09.30  
 
 장르: 1인칭 FPS + 서바이벌  
@@ -394,8 +390,6 @@
 
 ---
 # 3. 🧩 퍼즐 게임 
-
-🔗 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-puzzle)  
 
 ⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
 
