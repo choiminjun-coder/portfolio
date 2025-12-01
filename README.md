@@ -8,7 +8,6 @@
 ---
 
 # 🎮 진행 프로젝트
-
 # 1. 🎮 TPS 로그라이크 게임
 🔗 코딩파일 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-TPSscript)  
 
@@ -179,6 +178,119 @@
 5. 스탯 기반 아이템 효과 적용 및 데이터베이스화 및 관리
 6. 키 바인딩, UI 연동 등 사용자 설정 기능을 포함한 유저 편의성 확보
 7. 전반적인 시스템을 클래스 단위로 분리하여 유지보수성과 확장성 강화
+
+---
+
+<br><br>
+
+# 2. 🤖 실시간 NPC 대화·음악 시스템 (Prototype)
+
+🔗 **코딩파일**: [GitHub Repository](https://github.com/choiminjun-coder/AIChat)  
+⏱ **진행 기간**: 2025.11.17 ~ 2025.11.23  
+🎮 **장르**: 대화형 AI 시스템  
+
+---
+
+## 📌 주요 구현 요소
+1. AI 대화 시스템  
+2. BGM 분위기 분석 시스템  
+3. MusicGen 기반 실시간 음악 생성  
+4. 채팅 UI 시스템  
+5. 오디오 처리 및 진단 시스템  
+
+---
+
+## 🔧 주요 시스템 및 코드 설계
+
+### 🎤 AI 대화 시스템 (ChatManager.cs)
+
+#### ▶ 대화 흐름 및 UI 관리 (ChatManager.cs)
+- OpenChat() – 채팅 UI 활성화 및 입력 준비  
+- CloseChat() – UI 비활성화 및 커서 상태 복구  
+- OnSendClicked() – 플레이어 메시지 수신 및 AI 처리 시작  
+- AddChatMessage() – NPC/플레이어 메시지 출력  
+
+**특징**  
+- 플레이어 입력 → AI 대사 생성 → 대사 분석 → BGM 생성 전체 흐름 제어  
+- UI, 입력, 출력 동기화 처리  
+
+---
+
+### 🤖 Gemini 기반 대사 생성 시스템
+
+#### ▶ NPC 대사 생성 (RequestDialogue)
+- npcPreset 기반 말투·성격 규칙 적용  
+- 플레이어 메시지를 기반으로 Gemini API에 프롬프트 전달  
+- JSON 응답에서 텍스트만 파싱하여 정제  
+
+**특징**  
+- 자연스러운 한국어 대사 생성  
+- 불필요한 코드 블록/JSON 제거  
+- 캐릭터 성격·문장 톤 유지  
+
+---
+
+### 🎼 대사 기반 BGM 분위기 분석 (RequestBgmPrompt)
+- 생성된 NPC 대사를 분석해 영어 음악 분위기 프롬프트 생성  
+- 형식: adjective + tone + genre  
+  - 예: calm soft jazz, dark tense ambient  
+
+**특징**  
+- 대사 감정 변화에 따라 BGM 자동 전환  
+- 영어 전용 출력으로 MusicGen과 호환  
+
+---
+
+### 🎧 실시간 음악 생성 (BgmManager.cs)
+
+#### ▶ MusicGen 서버 요청
+- 분석된 프롬프트 전달  
+- WAV 파일을 byte[] 형태로 수신  
+
+#### ▶ 오디오 변환 및 재생
+- WAV 데이터를 AudioClip으로 변환  
+- AudioSource로 즉시 재생  
+- loop, volume, spatialBlend 자동 설정  
+
+#### ▶ 오디오 진단 기능
+- isPlaying, clip length, sample 수 등 출력  
+- 첫 샘플 값 확인으로 디버깅 가능  
+
+**특징**  
+- AI 생성 음악을 Unity에서 실시간 재생  
+- 안정적 흐름을 위한 AudioSource 자동 초기화 포함  
+
+---
+
+### 💬 채팅 UI 시스템
+- TextMeshPro 기반 입력/출력 UI  
+- ScrollRect 자동 스크롤  
+- Enter 키로 입력, ESC 키로 종료  
+
+**특징**  
+- UX 중심 대화 경험  
+- 입력 포커스 자동 처리  
+
+---
+
+### 🔈 오디오 시스템
+- AudioSource 자동 생성  
+- AudioClip 런타임 교체 가능  
+- AI 생성 BGM으로 부드럽게 전환  
+
+---
+
+## ✨ 핵심 기술 요약
+
+1. 플레이어 입력 기반 실시간 NPC 대사 생성 시스템 구현  
+2. 생성된 대사를 분석하여 음악 분위기를 자동 생성하는 BGM 분석 구조 설계  
+3. Gemini API + MusicGen 서버를 Unity 환경에 완전 통합  
+4. Coroutine 기반 비동기 흐름 구성으로 대사 → 분석 → 음악 생성 자연 연결  
+5. WAV 데이터를 AudioClip으로 변환하는 오디오 파이프라인 구축  
+6. TextMeshPro 기반 채팅 UI와 자동 스크롤 UX 구현  
+7. NPC 프리셋 규칙 기반 자연스러운 대화 톤 유지  
+
+---
 
 ---
 
